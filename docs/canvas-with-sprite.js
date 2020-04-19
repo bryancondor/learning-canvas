@@ -8,8 +8,8 @@ var ctx = lienzo.getContext('2d');
 ctx.globalCompositeOperation = 'overlay';
 var boyImage = new Image();
 var source = {
-    ArrowRight: 'assets/image/sprite-person-right.png',
-    ArrowLeft: 'assets/image/sprite-person-left.png'
+    ArrowRight: '../src/assets/image/sprite-person-right.png',
+    ArrowLeft: '../src/assets/image/sprite-person-left.png'
 };
 var dx = 0;
 var dy = 0;
@@ -17,9 +17,10 @@ var currentEvent;
 var oldEvent;
 var oldSource;
 var pintarImagen = function (posicionSprite) {
+    var _a, _b;
     ctx.clearRect(0, 0, 1000, 700);
     // console.log('currentEvent :', currentEvent?.code, 'oldEvent: ', oldEvent?.code);
-    boyImage.src = source[currentEvent === null || currentEvent === void 0 ? void 0 : currentEvent.code] || source[oldEvent === null || oldEvent === void 0 ? void 0 : oldEvent.code] || source.ArrowRight;
+    boyImage.src = source[(_a = currentEvent) === null || _a === void 0 ? void 0 : _a.code] || source[(_b = oldEvent) === null || _b === void 0 ? void 0 : _b.code] || source.ArrowRight;
     var width = 400;
     var height = boyImage.height;
     ctx.beginPath();
