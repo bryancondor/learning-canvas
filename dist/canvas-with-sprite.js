@@ -7,21 +7,32 @@ var lienzo = document.getElementById('lienzo');
 var ctx = lienzo.getContext('2d');
 ctx.globalCompositeOperation = 'overlay';
 var boyImage = new Image();
-boyImage.src = 'assets/image/my_sprite_person.png';
+var source = {
+    ArrowRight: 'assets/image/sprite-person-right.png',
+    ArrowLeft: 'assets/image/sprite-person-left.png'
+};
+var dx = 0;
+var dy = 0;
+var currentEvent;
+var oldEvent;
+var oldSource;
 var pintarImagen = function (posicionSprite) {
     ctx.clearRect(0, 0, 1000, 700);
+    // console.log('currentEvent :', currentEvent?.code, 'oldEvent: ', oldEvent?.code);
+    boyImage.src = source[currentEvent === null || currentEvent === void 0 ? void 0 : currentEvent.code] || source[oldEvent === null || oldEvent === void 0 ? void 0 : oldEvent.code] || source.ArrowRight;
     var width = 400;
     var height = boyImage.height;
     ctx.beginPath();
     // ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
-    ctx.drawImage(boyImage, width * posicionSprite, 0, width, height, 0, 0, width / 2, height / 2);
+    ctx.drawImage(boyImage, width * posicionSprite, 0, width, height, dx, dy, width / 4, height / 4);
     ctx.stroke();
 };
 // RECURSIVIDAD llamar (60 fps)
 var contador = 0;
 var cambio = 0;
-function log() {
-    if (contador % 10 === 0) {
+var listIdAnimationFrame = [];
+var frameRequestCallback = function (tiempo) {
+    if (contador % 5 === 0) {
         ++cambio;
         pintarImagen(cambio);
     }
@@ -32,6 +43,41 @@ function log() {
         contador = 0;
     }
     ++contador;
-    window.requestAnimationFrame(log);
-}
-window.requestAnimationFrame(log);
+    listIdAnimationFrame.push(window.requestAnimationFrame(frameRequestCallback));
+};
+// INTERACTIVA UI
+document.addEventListener('keydown', function (evento) {
+    cleanAnimationFrame();
+    currentEvent = evento;
+    listIdAnimationFrame.push(window.requestAnimationFrame(frameRequestCallback));
+    move(evento);
+});
+document.addEventListener('keyup', function (evento) {
+    cleanAnimationFrame();
+    oldEvent = evento;
+});
+var cleanAnimationFrame = function () {
+    listIdAnimationFrame.forEach(function (id) { return window.cancelAnimationFrame(id); });
+    listIdAnimationFrame = [];
+};
+var move = function (event) {
+    var speed = 5;
+    // console.log('dx :', dx);
+    switch (event.code) {
+        case 'ArrowRight':
+            dx += speed;
+            break;
+        case 'ArrowLeft':
+            dx -= speed;
+            break;
+        case 'ArrowUp':
+            dy -= speed;
+            break;
+        case 'ArrowDown':
+            dy += speed;
+            break;
+        default:
+            break;
+    }
+};
+frameRequestCallback(0);
