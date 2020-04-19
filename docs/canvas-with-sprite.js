@@ -8,8 +8,8 @@ var ctx = lienzo.getContext('2d');
 ctx.globalCompositeOperation = 'overlay';
 var boyImage = new Image();
 var source = {
-    ArrowRight: '../src/assets/image/sprite-person-right.png',
-    ArrowLeft: '../src/assets/image/sprite-person-left.png'
+    ArrowRight: 'assets/image/sprite-person-right.png',
+    ArrowLeft: 'assets/image/sprite-person-left.png'
 };
 var dx = 0;
 var dy = 0;
