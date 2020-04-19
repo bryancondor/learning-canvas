@@ -1,3 +1,9 @@
+require('../assets/css/style.css');
+const spritePersonLeft = require('../assets/image/sprite-person-left.png');
+const spritePersonRight = require('../assets/image/sprite-person-right.png');
+
+console.log(spritePersonLeft);
+
 const guia = document.getElementById('guia') as HTMLElement;
 for (let index = 0; index < 280; index++) { guia.innerHTML += '<p></p>' }
 
@@ -12,8 +18,8 @@ interface keyValue {
 }
 
 const source: keyValue = {
-    ArrowRight: 'assets/image/sprite-person-right.png',
-    ArrowLeft: 'assets/image/sprite-person-left.png'
+    ArrowRight: spritePersonRight.default,
+    ArrowLeft: spritePersonLeft.default
 }
 
 let dx = 0;

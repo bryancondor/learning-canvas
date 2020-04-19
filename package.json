@@ -5,12 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "watch": "tsc --watch"
+    "build": "webpack",
+    "watch": "webpack-dev-server",
+    "build:tsc": "tsc",
+    "watch:tsc": "tsc --watch"
   },
   "author": "Bryan Condor",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^3.8.3"
+    "@types/webpack": "^4.41.12",
+    "css-loader": "^3.5.2",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.2.0",
+    "style-loader": "^1.1.4",
+    "ts-loader": "^7.0.0",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
