@@ -1,8 +1,8 @@
-const guia = document.getElementById('guia') as HTMLElement;
+const _guia = document.getElementById('guia') as HTMLElement;
 for (let index = 0; index < 280; index++) { guia.innerHTML += '<p></p>' }
 
-const lienzo = document.getElementById('lienzo') as HTMLCanvasElement;
-const ctx = lienzo.getContext('2d') as CanvasRenderingContext2D;
+const _lienzo = document.getElementById('lienzo') as HTMLCanvasElement;
+const _ctx = lienzo.getContext('2d') as CanvasRenderingContext2D;
 console.log('ctx :', ctx);
 
 // RECTANGULO

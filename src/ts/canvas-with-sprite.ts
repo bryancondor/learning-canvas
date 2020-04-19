@@ -1,57 +1,40 @@
-// const guia = document.getElementById('guia') as HTMLElement;
-// for (let index = 0; index < 280; index++) { guia.innerHTML += '<p></p>' }
+const guia = document.getElementById('guia') as HTMLElement;
+for (let index = 0; index < 280; index++) { guia.innerHTML += '<p></p>' }
 
-// const lienzo = document.getElementById('lienzo') as HTMLCanvasElement;
-// const ctx = lienzo.getContext('2d') as CanvasRenderingContext2D;
-// ctx.globalCompositeOperation = 'overlay';
+const lienzo = document.getElementById('lienzo') as HTMLCanvasElement;
+const ctx = lienzo.getContext('2d') as CanvasRenderingContext2D;
+ctx.globalCompositeOperation = 'overlay';
 
+const boyImage = new Image();
+boyImage.src = 'assets/image/my_sprite_person.png';
 
-// const pintarImage = (posicionImgen: number = 0) => {
-//     ctx.beginPath();
-//     const boyImage = new Image();
-//     boyImage.src = 'assets/image/my_sprite_person.png';
-//     boyImage.onload = () => {
+const pintarImagen = (posicionSprite: number) => {
+    ctx.clearRect(0, 0, 1000, 700);
 
-//         ctx.clearRect(0, 0, 1000, 700)
+    const width = 400;
+    const height = boyImage.height;
 
-//         // ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
-//         const widthPartial = boyImage.width / 8;
-//         ctx.drawImage(boyImage, widthPartial * posicionImgen, 0, widthPartial, boyImage.height, 0, 0, widthPartial, boyImage.height);
-//         ctx.stroke();
+    ctx.beginPath();
+    // ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
+    ctx.drawImage(boyImage, width * posicionSprite, 0, width, height, 0, 0, width / 2, height / 2);
+    ctx.stroke();
+}
 
+// RECURSIVIDAD llamar (60 fps)
+let contador = 0;
+let cambio = 0;
+function log() {
 
-//     }
-// }
+    if (contador % 10 === 0) {
+        ++cambio;
+        pintarImagen(cambio);
+    }
 
-// // recursividad para llamar 60 fps
+    if (cambio > 5) { cambio = 2; }
 
-// let contador = 0;
-// let cambio = 0;
-// const inicio = 2;
-// const fin = 5;
-// // const inicio = 2;
-// // const fin = 6;
+    if (contador % 60 === 0) { contador = 0 }
+    ++contador;
+    window.requestAnimationFrame(log);
+}
 
-
-// function log() {
-//     // console.log('contador: ', contador)
-
-
-//     if (contador % 7 === 0) {
-//         cambio++
-//         if (cambio === fin) {
-//             cambio = inicio;
-//         }
-//     }
-
-//     if (cambio >= inicio && cambio <= fin) {
-//         pintarImage(cambio);
-//     }
-
-//     if (contador % 60 === 0) { contador = 0 }
-//     ++contador;
-
-//     window.requestAnimationFrame(log);
-// }
-
-// window.requestAnimationFrame(log);
+window.requestAnimationFrame(log);

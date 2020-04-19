@@ -1,10 +1,10 @@
 "use strict";
-var guia = document.getElementById('guia');
+var _guia = document.getElementById('guia');
 for (var index = 0; index < 280; index++) {
     guia.innerHTML += '<p></p>';
 }
-var lienzo = document.getElementById('lienzo');
-var ctx = lienzo.getContext('2d');
+var _lienzo = document.getElementById('lienzo');
+var _ctx = lienzo.getContext('2d');
 console.log('ctx :', ctx);
 // RECTANGULO
 ctx.fillStyle = 'pink';
