@@ -2,14 +2,9 @@ require('../assets/css/style.css');
 const spritePersonLeft = require('../assets/image/sprite-person-left.png');
 const spritePersonRight = require('../assets/image/sprite-person-right.png');
 
-console.log(spritePersonLeft);
-
-const guia = document.getElementById('guia') as HTMLElement;
-for (let index = 0; index < 280; index++) { guia.innerHTML += '<p></p>' }
-
 const lienzo = document.getElementById('lienzo') as HTMLCanvasElement;
 const ctx = lienzo.getContext('2d') as CanvasRenderingContext2D;
-ctx.globalCompositeOperation = 'overlay';
+// ctx.globalCompositeOperation = 'overlay';
 
 const boyImage = new Image();
 
@@ -22,8 +17,8 @@ const source: keyValue = {
     ArrowLeft: spritePersonLeft.default
 }
 
-let dx = 0;
-let dy = 0;
+let dx: number = 0;
+let dy: number = 0;
 let currentEvent: KeyboardEvent;
 let oldEvent: KeyboardEvent;
 let oldSource: string;
@@ -88,8 +83,6 @@ const move = (event: KeyboardEvent) => {
 
     const speed = 5;
 
-    // console.log('dx :', dx);
-
     switch (event.code) {
         case 'ArrowRight':
             dx += speed;
@@ -108,6 +101,5 @@ const move = (event: KeyboardEvent) => {
     }
 
 }
-
 
 frameRequestCallback(0);

@@ -1,0 +1,1 @@
+declare const guia: HTMLElement;

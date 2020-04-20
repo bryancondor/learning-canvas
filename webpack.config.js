@@ -1,15 +1,21 @@
 // @ts-check
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = /** @type { import('webpack').Configuration } */ ({
     mode: 'development',
     entry: {
-        sprite: path.resolve(__dirname, 'src/ts/canvas-with-sprite.ts')
+        guia: path.resolve(__dirname, 'src/ts/guia.ts'),
+        person: path.resolve(__dirname, 'src/ts/person.ts'),
+        playground: path.resolve(__dirname, 'src/ts/playground.ts'),
     },
     output: {
         path: path.resolve(__dirname, 'docs'),
         filename: '[name].js'
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js']
     },
     module: {
         rules: [
@@ -31,7 +37,8 @@ module.exports = /** @type { import('webpack').Configuration } */ ({
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src/index.html') })
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src/index.html') }),
+        new CleanWebpackPlugin()
     ]
 
 });
